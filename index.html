@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.10.2/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.10.2/addons/p5.sound.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <meta charset="utf-8" />
+
+  </head>
+  <body>
+    <script>
+
+let img;
+let stepSize = 5;
+let colorArray = [];
+let lineArray = [];
+let totalArray = [];
+
+function preload() {
+  img = loadImage("https://upload.wikimedia.org/wikipedia/commons/e/ef/Cat_skull.jpg");
+
+}
+
+function setup() {
+  pixelDensity(1);
+  img.resize(200, 0);
+  createCanvas(img.width, img.height);
+
+  //colorMode(HSB);
+  noStroke();
+  image(img, 0, 0);
+  
+  img.loadPixels();
+
+  for (let y = 0; y < img.height; y += stepSize) {
+    for (let x = 0; x < img.width; x += stepSize) {
+
+      let index = (x + y * img.width)*4;
+      let r = img.pixels[index+0];
+      let g = img.pixels[index+1];
+      let b = img.pixels[index+2];
+      let c = color(r,g,b);
+      
+      //square unicode char █
+      let myChar = "%c"+String.fromCharCode(0x25A6);
+      lineArray.push(myChar);
+  
+      //color info for pixel
+      let myColor = "color:" + c + "; font-size:25px;line-height:0px;";
+      colorArray.push(myColor);
+      
+      fill(c);
+      rect(x,y,stepSize,stepSize);
+      
+    }//end line
+    
+    //join all chars into line and insert into total array
+    totalArray.push(lineArray.join(""));
+    //clear array for next line
+    lineArray = [];
+    
+  } //end nest
+
+  console.log(totalArray.join("\n"), ...colorArray );
+  console.log("cat skull");
+
+}
+
+//the ...array is called spread operator: 
+//https://stackoverflow.com/questions/28620087/print-an-output-in-one-line-using-console-log
+
+//resetting the array at each line
+//https://stackoverflow.com/questions/1232040/how-do-i-empty-an-array-in-javascript
+
+
+    </script>
+  </body>
+</html>
