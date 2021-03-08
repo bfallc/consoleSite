@@ -43,6 +43,7 @@ function setup() {
       
       //square unicode char █
       let myChar = "%c"+String.fromCharCode(0x25A6);
+      // let myChar = "%cX";
       lineArray.push(myChar);
   
       //color info for pixel
@@ -61,8 +62,26 @@ function setup() {
     
   } //end nest
 
-  console.log(totalArray.join("\n"), ...colorArray );
-  console.log("cat skull");
+  console.log('\n\n' + totalArray.join("\n"), ...colorArray );
+  console.log("%c cat skull https://en.wikipedia.org/wiki/Cat \n \n ", 'font-size: 20px; color: lightblue;');
+  
+
+  let artistCss = 'font-size: 15px; font-weight:bold; color:#6b6b6a ;background-color: #f5f5f5; display:inline-block; padding:0 90px;';
+  let titleCss = 'font-size: 15px; font-style: italic; color: white;';
+  let yearCss = 'font-size: 15px; color: white;';
+  let descriptionCss = 'font-size: 15px; color: white; background-color: #333232;';
+  let labelCss = 'font-size: 15px; color: #6b6b6a;';
+  let linkCss = 'font-size: 15px; color: white;';
+
+  console.group('%c Alfredo Jaar ', artistCss);
+  console.log('%c September 15th %c(2009)', titleCss, yearCss);
+  console.group('%c Description:', labelCss);
+  console.log('%c "This envelope contains a photograph by Alfredo Jaar of Karl Marx’s grave in Highgate Cemetery, London. The purchaser of this work agrees to view this image only once a year, on September 15, the anniversary of the day Lehman Brothers declared bankruptcy in New York."', descriptionCss);
+  console.groupEnd();
+  console.log('%cExternal link: %chttp://artistsbooksandmultiples.blogspot.com/2013/03/alfredo-jaar-september-15.html', labelCss, linkCss);
+  console.groupEnd();
+
+  console.log("%ctesting", 'font-size: 25px; color: aliceblue; background-color: gainsboro; display: inline-block; border: 3px solid fuchsia; border-radius: 7px; padding: 10px ; margin: 20px ;text-decoration: italic; font-family: "roboto"; text-shadow: 1px 2px 4px black;');
 
 }
 
